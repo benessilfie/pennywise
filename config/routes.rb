@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :users, only: %i[index show create update]
+    resources :sessions, only: %i[create destroy]
+    resources :users, only: %i[show index create update]
   end
 end
