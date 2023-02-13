@@ -5,7 +5,7 @@ class Api::SessionsController < ApiController
     if @user&.authenticate(session_params[:password])
       render json: {
         message: 'Login successful',
-        data: @user.as_json.merge(auth_token: JsonWebToken.encode(user_id: @user.id))
+        data: @user.as_json.merge(auth_token: JsonWebToken.encode(user_id: @user.id), wallet: @user.wallet)
       }, status: :ok
     else
       render json: { errors: ['Invalid email or password'] }, status: :unauthorized

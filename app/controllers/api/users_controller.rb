@@ -4,11 +4,11 @@ class Api::UsersController < ApiController
 
   def index
     @users = User.all.order(id: :asc)
-    render json: @users, status: :ok
+    render json: @users.map { |user| user.as_json.merge(wallet: user.wallet) }, status: :ok
   end
 
   def show
-    render json: @user, status: :ok
+    render json: @user.as_json.merge(wallet: @user.wallet), status: :ok
   end
 
   def create
@@ -17,8 +17,8 @@ class Api::UsersController < ApiController
     if @user.valid?
       render json: {
         message: 'User created successfully',
-        data: @user
-      }, status: :ok
+        data: @user.as_json.merge(wallet: @user.wallet)
+      }, status: :created
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Api::UsersController < ApiController
     if @user.update(user_params)
       render json: {
         message: 'User updated successfully',
-        data: @user.as_json(only: %i[first_name last_name email dob address updated_at])
+        data: @user.as_json.merge(wallet: @user.wallet)
       }, status: :ok
     else
       render json: {
