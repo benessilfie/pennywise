@@ -5,4 +5,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8, message: 'must be at least 8 characters' }
 
   has_secure_password
+  has_one :wallet, dependent: :destroy
+  after_create :create_wallet, if: proc { |user| user.wallet.nil? }
 end
