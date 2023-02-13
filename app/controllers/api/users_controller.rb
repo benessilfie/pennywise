@@ -1,14 +1,6 @@
 class Api::UsersController < ApiController
-  before_action :set_user, only: %i[show update]
-  before_action :check_user, only: %i[update]
-
-  def index
-    @users = User.all.order(id: :asc)
-    render json: @users.map { |user| user.as_json.merge(wallet: user.wallet) }, status: :ok
-  end
-
   def show
-    render json: @user.as_json.merge(wallet: @user.wallet), status: :ok
+    render json: current_user.as_json.merge(wallet: current_user.wallet), status: :ok
   end
 
   def create
@@ -25,6 +17,8 @@ class Api::UsersController < ApiController
   end
 
   def update
+    @user = current_user
+
     if @user.update(user_params)
       render json: {
         message: 'User updated successfully',
