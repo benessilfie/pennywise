@@ -32,7 +32,6 @@ class Api::UsersController < ApiController
       }, status: :ok
     else
       render json: {
-        message: 'User update failed',
         errors: @user.errors.full_messages
       }, status: :unprocessable_entity
     end
