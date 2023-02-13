@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :sessions, only: %i[create destroy]
-    resources :users, only: %i[show index create update]
+    resource :session, only: %i[create destroy]
+    resource :user, only: %i[show create update]
+
+    resource :wallet, only: %i[show]
   end
 end
