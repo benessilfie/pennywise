@@ -15,17 +15,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_122707) do
   enable_extension "plpgsql"
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "transaction_type", null: false
     t.decimal "amount", default: "0.0", null: false
     t.integer "status", default: 0, null: false
-    t.string "source_type"
-    t.bigint "source_id"
-    t.string "destination_type"
-    t.bigint "destination_id"
+    t.integer "transaction_type", null: false
+    t.string "transaction_reference", null: false
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
+    t.string "destination_type", null: false
+    t.bigint "destination_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["destination_type", "destination_id"], name: "index_transactions_on_destination"
     t.index ["source_type", "source_id"], name: "index_transactions_on_source"
+    t.index ["transaction_reference"], name: "index_transactions_on_transaction_reference"
   end
 
   create_table "users", force: :cascade do |t|
