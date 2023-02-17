@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_153010) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_122707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "transaction_type", null: false
+    t.decimal "amount", default: "0.0", null: false
+    t.integer "status", default: 0, null: false
+    t.string "source_type"
+    t.bigint "source_id"
+    t.string "destination_type"
+    t.bigint "destination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_type", "destination_id"], name: "index_transactions_on_destination"
+    t.index ["source_type", "source_id"], name: "index_transactions_on_source"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
