@@ -1,6 +1,6 @@
 class Api::UsersController < ApiController
   def show
-    render json: current_user.as_json.merge(wallet: current_user.wallet), status: :ok
+    render json: current_user.as_json.merge(wallet: current_user.wallet.response), status: :ok
   end
 
   def create
@@ -9,7 +9,7 @@ class Api::UsersController < ApiController
     if @user.valid?
       render json: {
         message: 'User created successfully',
-        data: @user.as_json.merge(wallet: @user.wallet)
+        data: @user.as_json.merge(wallet: @user.wallet.response)
       }, status: :created
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
@@ -22,7 +22,7 @@ class Api::UsersController < ApiController
     if @user.update(user_params)
       render json: {
         message: 'User updated successfully',
-        data: @user.as_json.merge(wallet: @user.wallet)
+        data: @user.as_json.merge(wallet: @user.wallet.response)
       }, status: :ok
     else
       render json: {
