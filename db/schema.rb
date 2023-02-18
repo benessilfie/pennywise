@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_122707) do
   enable_extension "plpgsql"
 
   create_table "transactions", force: :cascade do |t|
-    t.decimal "amount", default: "0.0", null: false
+    t.float "amount", default: 0.0, null: false
     t.integer "status", default: 0, null: false
     t.integer "transaction_type", null: false
     t.string "transaction_reference", null: false
