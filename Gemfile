@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'dotenv-rails', groups: %i[development test]
+
 ruby '3.1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -33,8 +35,6 @@ gem 'redis', '~> 4.0'
 gem 'jwt'
 
 gem 'httparty'
-
-gem 'dotenv'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
