@@ -11,6 +11,8 @@ module ErrorHandler
     when JWT::DecodeError
       render json: { errors: ['Authentication Error: Invalid or Missing token'] },
              status: :unauthorized
+    when ActionDispatch::Http::Parameters::ParseError
+      render json: { error: ["#{error.message}: Check request body"] }, status: :bad_request
     else
       render json: { error: respond_with(error.message) },
              status: :internal_server_error
@@ -27,6 +29,14 @@ module ErrorHandler
       ['Email parameter is required and cannot be empty']
     when /empty: password/
       ['Password parameter is required and cannot be empty']
+    when /empty: card_number/
+      ['Card number parameter is required and cannot be empty']
+    when /empty: expiration_month/
+      ['Expiration month parameter is required and cannot be empty']
+    when /empty: expiration_year/
+      ['Expiration year parameter is required and cannot be empty']
+    when /empty: cvv/
+      ['CVV parameter is required and cannot be empty']
     else
       ['An error has occurred on the server, please try again later']
     end
