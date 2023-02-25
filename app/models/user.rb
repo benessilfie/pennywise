@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_secure_password
   has_one :wallet, dependent: :destroy
+  has_many :debit_cards, dependent: :destroy
+
   after_create :create_wallet, if: proc { |user| user.wallet.nil? }
 end
