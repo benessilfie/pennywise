@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resource :user, only: %i[show create update]
 
     resource :wallet, only: %i[show]
+    resource :debit_card, only: %i[create destroy]
   end
 end
