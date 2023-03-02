@@ -4,7 +4,7 @@ module ErrorHandler
     when ActionController::ParameterMissing
       render json: { error: respond_with(error.message) }, status: :bad_request
     when ActiveRecord::RecordNotFound
-      render json: { errors: ["User Record Not Found: No user found with ID: #{params[:id]}"] },
+      render json: { errors: ["User Record with ID: #{params[:id]} Not Found"] },
              status: :not_found
     when JWT::ExpiredSignature
       render json: { errors: ['Authentication Error: Token has expired'] }, status: :unauthorized
