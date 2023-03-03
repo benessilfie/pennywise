@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       post :credit
       post :debit
       post :transfer
+
+      post :send_pin, path: 'credit/send_pin'
+      post :send_otp, path: 'credit/send_otp'
     end
 
     resource :debit_card, only: %i[create destroy] do
