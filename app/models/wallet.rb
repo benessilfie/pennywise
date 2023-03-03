@@ -1,4 +1,5 @@
 class Wallet < ApplicationRecord
+  include TransactionHelper
   belongs_to :user
 
   validates :status, presence: true
@@ -11,13 +12,5 @@ class Wallet < ApplicationRecord
 
   def check_status
     self.status = :active unless status.present?
-  end
-
-  def transactions
-    Transaction.where(source: self).or(Transaction.where(destination: self)).order(created_at: :desc)
-  end
-
-  def response
-    as_json.merge(transactions: transactions.limit(10).order(created_at: :desc))
   end
 end
