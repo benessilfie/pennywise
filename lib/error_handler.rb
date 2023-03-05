@@ -14,7 +14,7 @@ module ErrorHandler
     when ActionDispatch::Http::Parameters::ParseError
       render json: { error: ["#{error.message}: Check request body"] }, status: :bad_request
     else
-      render json: { error: respond_with(error.message) },
+      render json: { error: error.message || respond_with(error.message) },
              status: :internal_server_error
     end
   end
