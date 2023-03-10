@@ -1,13 +1,5 @@
 class PaystackService::DebitCard
-  include HTTParty
-  base_uri 'https://api.paystack.co'
-
-  def self.headers
-    {
-      'Authorization' => "Bearer #{ENV['PAYSTACK_SECRET_KEY']}",
-      'Content-Type' => 'application/json'
-    }
-  end
+  include PaystackService::ApiUtils
 
   def self.charge(transaction:, card: nil, authorization_code: nil, pin: nil)
     body = {
