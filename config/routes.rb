@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
     resource :wallet, only: %i[show] do
       post :credit
-      post :debit
       post :transfer
 
       post :send_pin, path: 'credit/send_pin'
@@ -20,6 +19,10 @@ Rails.application.routes.draw do
     resource :banks, only: %i[show]
     resource :bank_account, only: %i[] do
       post :verify
+    end
+
+    resource :callback, only: [] do
+      post :paystack
     end
   end
 end
