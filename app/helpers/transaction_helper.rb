@@ -8,10 +8,14 @@ module TransactionHelper
            .merge(debit_cards: user.debit_cards.without_authorization_code)
   end
 
-  def make_credit(amount, source: nil, status: :pending, save: true, skip_source_validation: false) # rubocop:disable Lint/UnusedMethodArgument
+  def make_credit_transaction(amount, source: nil, status: :pending, save: true, skip_source_validation: false) # rubocop:disable Lint/UnusedMethodArgument
     transaction = Transaction.new(amount:, source:, destination: self, transaction_type: :credit,
                                   status:)
     transaction.save! if save
     transaction
+  end
+
+  def make_debit_transaction(amount, destination:, status: :pending)
+    Transaction.create!(amount:, source: self, destination:, transaction_type: :debit, status:)
   end
 end
