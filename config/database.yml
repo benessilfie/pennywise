@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: pennywise_production
   username: pennywise
   password: <%= ENV["PENNYWISE_DATABASE_PASSWORD"] %>
