@@ -1,6 +1,8 @@
 databases:
   - name: projectsdb
-    ipAllowlist: []
+    databaseName: pennywise
+    user: ben
+    plan: free
 
 services:
   - type: web
@@ -11,7 +13,7 @@ services:
     startCommand: "bundle exec rails s"
     envVars:
       - key: DATABASE_URL
-        fromDatabas:
+        fromDatabase:
           name: projectsdb
       - key: RAILS_MASTER_KEY
         sync: false
