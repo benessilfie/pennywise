@@ -1,7 +1,7 @@
 databases:
-  - name: pennywise
-    databaseName: pennywise
-    user: pennywise
+  - name: projectsdb
+    databaseName: ben_db
+    user: ben
     plan: free
 
 services:
