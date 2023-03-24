@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'application#index'
+
   namespace :api do
     resource :session, only: %i[create destroy]
     resource :user, only: %i[show create update]
