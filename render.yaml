@@ -1,13 +1,13 @@
 databases:
   - name: traidr_pj
-    databaseName: traidr_db
-    user: traidr
+    databaseName: pennywise_db
+    user: pennywise
     plan: free
 
 services:
   - type: web
     plan: free
-    name: traidr
+    name: pennywise
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec rails s"
