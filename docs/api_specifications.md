@@ -1,4 +1,8 @@
-#### Wallets API specification
+#### Wallets API Documentation
+
+- Base URL - `https://pennywise.onrender.com/api/v1`
+- Swagger Documentation - `https://pennywise.onrender.com/docs`
+- Author - [Ben Essilfie](https://www.linkedin.com/in/benessilfie/)
 
 ---
 

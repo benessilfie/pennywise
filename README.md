@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [About](#about)
+- [Usage](#usage)]
 - [Getting Started](#getting_started)
 - [Test the API (Locally)](#test_the_API)
 - [API Specificiations Docs](./docs/api_specifications.md)
@@ -10,6 +11,12 @@
 ## About <a name = "about"></a>
 
 This is a basic wallet API that allows for secure financial transactions including funding your wallet with a debit card and sending money to other banks. I built this project as part of my course requirements for the Software Engineering program at Altschool Africa.
+
+## Usage <a name = "usage"></a>
+
+- [API Specificiations Docs](./docs/api_specifications.md)
+- [API Swagger Documentation](https://pennywise.onrender.com/docs)
+- [API Base URL](https://pennywise.onrender.com/api)
 
 ## Getting Started <a name = "getting_started"></a>
 
