@@ -1,7 +1,7 @@
 databases:
   - name: traidr_pj
     databaseName: pennywise_db
-    user: pennywise
+    user: traidr
     plan: free
 
 services:
