@@ -13,6 +13,6 @@ services:
     startCommand: "bundle exec rails s"
     envVars:
       - key: DATABASE_URL
-        value: ENV['DATABASE_URL']
+        value: postgres://traidr:41ROclsxv5cG8MKub7UGxcEHVJu4VAiG@dpg-cgf0249mbg50899ep5t0-a/pennywise_db
       - key: RAILS_MASTER_KEY
         sync: false
