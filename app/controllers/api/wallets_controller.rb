@@ -1,5 +1,4 @@
 class Api::WalletsController < ApiController
-  include PinOtpSendable
   include WalletHelper
 
   before_action :set_transaction, only: %i[send_pin send_otp]
@@ -17,6 +16,16 @@ class Api::WalletsController < ApiController
     response = charge_debit_card(debit_card, @transaction)
 
     paystack_response(response)
+  end
+
+  def send_pin
+    response = PaystackService::DebitCard.submit_pin(reference: params.require(:reference), pin: params.require(:pin))
+    pin_otp_response(response)
+  end
+
+  def send_otp
+    response = PaystackService::DebitCard.submit_otp(reference: params.require(:reference), otp: params.require(:otp))
+    pin_otp_response(response)
   end
 
   def transfer

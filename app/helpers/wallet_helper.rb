@@ -53,7 +53,7 @@ module WalletHelper
   end
 
   def set_transaction
-    @transaction = Transaction.find_by!(transaction_reference: params.require(:reference))
+    @transaction = Transaction.find_by(transaction_reference: params.require(:reference))
     render json: { errors: ['Transaction not found'] }, status: :not_found unless @transaction
   end
 
