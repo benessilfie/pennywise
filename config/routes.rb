@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'application#home'
+  root to: 'api#home'
 
   namespace :api do
     resource :session, only: %i[create destroy]
