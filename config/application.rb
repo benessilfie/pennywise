@@ -12,12 +12,14 @@ require 'action_mailbox/engine'
 require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'
-require 'dotenv/load'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+# Load dotenv only in development or test environment
+Dotenv::Railtie.load if %w[development test].include? ENV['RAILS_ENV']
 
 module Pennywise
   class Application < Rails::Application
