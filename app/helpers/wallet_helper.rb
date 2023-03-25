@@ -18,6 +18,18 @@ module WalletHelper
     end
   end
 
+  def pin_otp_response(response)
+    case response['status']
+    when true
+      handle_response(@transaction, @transaction.amount)
+    when false
+      @transaction.update!(status: :failed)
+      raise StandardError, response['message']
+    else
+      render json: { message: response['message'] }, status: :unprocessable_entity
+    end
+  end
+
   def handle_response(transaction, amount)
     ActiveRecord::Base.transaction do
       transaction.update!(status: :success)

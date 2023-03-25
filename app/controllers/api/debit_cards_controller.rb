@@ -4,7 +4,7 @@ class Api::DebitCardsController < ApiController
   before_action :set_wallet
 
   def create
-    transaction = @wallet.make_credit(100, save: false, skip_source_validation: true)
+    transaction = @wallet.make_credit_transaction(100, save: false, skip_source_validation: true)
     response = PaystackService::DebitCard.charge(transaction:, card: debit_card_params)
 
     paystack_response(response)
